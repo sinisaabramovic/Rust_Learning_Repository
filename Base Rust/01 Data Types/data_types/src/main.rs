@@ -4,7 +4,7 @@ mod scope;
 mod stack_and_heap;
 
 fn main() {
-    // primitive_data_types::run();
+//   primitive_data_types::run();
     // operators::run();
 //   scope::run();
 
