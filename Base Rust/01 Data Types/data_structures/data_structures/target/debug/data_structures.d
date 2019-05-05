@@ -1,0 +1,1 @@
+/Users/sinisaabramovic/Rust/git/Base\ Rust/01\ Data\ Types/data_structures/data_structures/target/debug/data_structures.dSYM: /Users/sinisaabramovic/Rust/git/Base\ Rust/01\ Data\ Types/data_structures/data_structures/src/main.rs /Users/sinisaabramovic/Rust/git/Base\ Rust/01\ Data\ Types/data_structures/data_structures/src/structs.rs
