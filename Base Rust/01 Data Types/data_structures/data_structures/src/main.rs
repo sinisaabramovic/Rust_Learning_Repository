@@ -5,6 +5,7 @@ mod option_t_and_let_while;
 mod arrays;
 mod vectors;
 mod slices;
+mod strings;
 
 fn main() {
 
@@ -15,5 +16,6 @@ fn main() {
     // option_t_and_let_while::run();
     // arrays::run();
     // vectors::run();
-    slices::run();
+    // slices::run();
+    strings::run();
 }

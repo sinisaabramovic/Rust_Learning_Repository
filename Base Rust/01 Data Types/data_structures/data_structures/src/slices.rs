@@ -2,7 +2,6 @@
 #![allow(unused_variables)]
 use std::mem;
 
-
 fn use_slices(slice: &mut[i32]) {
     println!("First element = {}, len = {}", slice[0], slice.len());
     slice[0] = 4321;
