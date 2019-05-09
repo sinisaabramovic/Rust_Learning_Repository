@@ -1,3 +1,4 @@
+
 use std::mem;
 
 trait Printable {
@@ -16,19 +17,16 @@ impl Printable for String {
     }
 }
 
-// this will be call in compile time
-fn print_it<T: Printable>(z: T) {
+// this is call in runtime
+fn print_it_to(z: &Printable) {
     println!("{}", z.format());
-} // monomorphisation
+}
 
 pub fn run() {
 
     let a = 123;
     let b = "hello".to_string();
 
-    // println!("{}", a.format());
-    // println!("{}", b.format());
-
-    print_it(a);
-    print_it(b);
+    print_it_to(&a);
+    print_it_to(&b);
 }
