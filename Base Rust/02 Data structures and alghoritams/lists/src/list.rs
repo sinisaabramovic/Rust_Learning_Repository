@@ -5,6 +5,7 @@ use std::mem;
 
 pub const INVALID_INDEX: usize = <usize>::max_value();
 pub const RESIZE_AMOUNT: usize = 5;
+pub const EMPTY: usize = 0;
 
 type position = usize;
 
@@ -32,12 +33,18 @@ impl <T> List <T> {
         }
     }
 
-    pub fn last(&self) -> &T {
-        &self.data.last().unwrap()
+    pub fn last(&self) -> Option<&T> {
+       if self.data.is_empty() {
+            return None;
+        }        
+        self.data.last()
     }
 
-    pub fn first(&self) -> &T {
-        &self.data.first().unwrap()
+    pub fn first(&self) -> Option<&T> {
+        if self.data.is_empty() {
+            return None;
+        }
+        self.data.first()
     }
 
     pub fn add(&mut self, element: T) {
@@ -52,7 +59,11 @@ impl <T> List <T> {
         self.data.insert(at, element);
     }
 
-    pub fn remove(&mut self, element: T) where T: std::cmp::Ord {
+    pub fn remove_element(&mut self, element: T) where T: std::cmp::Ord {
+        if self.data.is_empty() {
+            return;
+        }
+
         let index = self.get_index(element);
         if index == INVALID_INDEX {
             return;
@@ -62,6 +73,11 @@ impl <T> List <T> {
     }
 
     pub fn get_index(&mut self, element: T) -> usize where T: std::cmp::Ord {
+
+        if self.data.is_empty() {
+            return 0;
+        }
+
         match self.data.binary_search_by(|probe| probe.cmp(&element)) {
             Ok(pos) => { return pos } 
             Err(pos) => { return INVALID_INDEX },

@@ -3,7 +3,7 @@ use std::cmp::Ordering;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug)]
 pub struct FooModel {
     pub name: String,
-    pub id_num: u32
+    pub id_num: usize
 }
 
 impl FooModel {
@@ -15,8 +15,12 @@ impl FooModel {
         self.name.clone()
     }
 
-    fn get_id(&self) -> u32 {
+    fn get_id(&self) -> usize {
         self.id_num
+    }
+
+    pub fn isEqual(&self, element: FooModel) -> bool {
+        return self.name == element.name && self.id_num == element.id_num;
     }
 }
 
