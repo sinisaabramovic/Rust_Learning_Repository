@@ -10,11 +10,11 @@ fn main() {
 
     let mut list: List<FooModel> = List::new();
 
-    let my_foo_x = list.first();
-    match my_foo_x {
-        Some(value) => println!("First element in List  my_foo_x is  {:?}", value),
-        None => println!("Empty array!")
-    }
+    // let my_foo_x = list.first();
+    // match my_foo_x {
+    //     Some(value) => println!("First element in List  my_foo_x is  {:?}", value),
+    //     None => println!("Empty array!")
+    // }
 
     let mut big_list: List<FooModel> = List::new();
 
@@ -48,20 +48,39 @@ fn main() {
     list_2.add(3);
     list_2.add(4);
 
+    println!("Initial print list of some generic elements");
     list.print_list();
+    println!("Initial print list of some FooModel elements");
     list_2.print_list();
-    println!("Element is at index {:?}", list_2.get_index(1));
 
-    println!("Non inserted Element is at index {:?}", list.get_index(my_foo_not.clone()));
+    // Lets try get a index for element 1 (generic data)
+    println!("Try to get index for element {}, from generic list", 1);
+    match list_2.get_index(1) {
+       Ok(index) => println!("Element is at index {}", index),
+       Err(e) => println!("Element not found error {}", e)
+    }
 
-    println!("Element is at index {:?}", list.get_index(my_foo_1.clone()));
+    // OK this should return Err
+    println!("Try to get index for element {:?}, from FooModel list, this should result error", my_foo_not);
+    match list.get_index(my_foo_not.clone()) {
+       Ok(index) => println!("Element is at index {}", index),
+       Err(e) => println!("Element not found error {}", e)
+    }
 
+    // This should return Ok, but it return Err !?
+    println!("Try to get index for element {:?}, from FooModel list, this should result Ok", my_foo_not);
+    match list.get_index(my_foo_1.clone()) {
+       Ok(index) => println!("Element is at index {}", index),
+       Err(e) => println!("Element not found error {}", e)
+    }
+
+    // Just for test lets get the first element
+    println!("Try to get first element, from FooModel list, this should result Ok");
     let my_foo_x = list.first();
     match my_foo_x {
         Some(value) => println!("First element in List  my_foo_x is  {:?}", value),
         None => println!("Empty array!")
     }
-    //println!("First element in List  my_foo_x is  {:?}", my_foo_x.unwrap());
 
     list.remove_element(my_foo_1);
     list.print_list();

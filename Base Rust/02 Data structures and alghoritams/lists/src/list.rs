@@ -1,9 +1,9 @@
 #[warn(dead_code)]
 
 use std::borrow::BorrowMut;
+use std::num::ParseIntError;
 use std::mem;
 
-pub const INVALID_INDEX: usize = <usize>::max_value();
 pub const RESIZE_AMOUNT: usize = 5;
 pub const EMPTY: usize = 0;
 
@@ -64,24 +64,18 @@ impl <T> List <T> {
             return;
         }
 
-        let index = self.get_index(element);
-        if index == INVALID_INDEX {
-            return;
-        }
+        match self.get_index(element){
+            Ok(index) => self.data.remove(index as usize),
+            Err(s) => return
+        };
 
-        self.data.remove(index as usize);
     }
 
-    pub fn get_index(&mut self, element: T) -> usize where T: std::cmp::Ord {
-
-        if self.data.is_empty() {
-            return 0;
-        }
+    pub fn get_index(&mut self, element: T) -> Result<usize, usize> where T: std::cmp::Ord {
 
         match self.data.binary_search_by(|probe| probe.cmp(&element)) {
-            Ok(pos) => { return pos } 
-            Err(pos) => { return INVALID_INDEX },
+            Ok(index)=> Ok(index),
+            Err(e) => Err(e),
         }
     }
-
 }
