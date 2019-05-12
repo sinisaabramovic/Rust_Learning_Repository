@@ -6,10 +6,10 @@ use list::List;
 use foo_model::FooModel;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Basic Rust playground");
 
     let mut list: List<FooModel> = List::new();
-    
+
     let my_foo_x = list.first();
     match my_foo_x {
         Some(value) => println!("First element in List  my_foo_x is  {:?}", value),
